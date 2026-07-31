@@ -16,7 +16,7 @@ read_when:
   - 发布前审核
   - 发稿前检查
   - pre-publication review
-version: 1.0.1
+version: 1.0.2
 disable: false
 ---
 
@@ -124,6 +124,19 @@ Output:
 - Overall: publishable | minor-fix | major-fix | rewrite
 - Critical issues:
 ```
+
+## 发布前强化检查（高发返工点兜底）
+
+在七项通用检查之外，对高发返工点做强制检查（对应 claim / cross-material 治理线发现的 P0/P1）。这些也是 `content-writer` 表达红线的发布前兜底：
+
+- **P0 命名一致性**：技术博客产品对外名必须与同 campaign 已发布物料（新闻稿/官网/公众号）逐字一致；不得擅自加版本号/后缀（如对外统一叫 X，博客不得写"X 2.0"）。不一致即 FAIL。
+- **P0 元语言/自我指涉**：出现"本文…""新闻稿把…讲清楚了""值得单独展开""回到…整体叙事"等跳出框架句式即 FAIL，改为内容直接过渡。
+- **P0 商务腔**：出现"多、快、好、省"等四字口号即 FAIL，改工程维度（负载覆盖/执行效率/运维体验/资源效率）。
+- **P1 绝对化表述**：扫描"天然打通/无缝/必然/一定/零"等绝对化词，要求改为带边界的定性表述。
+- **P1 超范围场景**：落地行业/场景若无知识库或已发文章出处，标 `[需确认]` 或删除，不得凭印象列举（如某行业/场景需有内部来源背书）。
+- **P1 忠实转录 vs 量化断言**：基础设施能力有架构图背书可写；量化加速倍数无官方口径标 FAIL。
+
+> 涉及对外发布且同主题已有多份物料时，预审 PASS 后建议追加 `claim-to-source-auditor` + `cross-material-consistency-auditor` + `tech-content-review-panel` 三件套治理线，再定稿。
 
 ## Hard Rules
 
