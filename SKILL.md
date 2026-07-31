@@ -1,9 +1,8 @@
 ---
 name: tcms-compliance-reviewer
+version: "1.1.0"
 description: |
-  For tech-product marketing teams — pre-publish compliance and quality review of brand-side drafts (blogs, case studies, product write-ups, press releases), checking facts, customer redaction, product naming, competitor rules, and internal-info leaks.
-  Reports issues and fixes only; never auto-edits the original draft.
-  Not for monthly performance analysis — use tcms-performance-analyst for that.
+  Pre-publication compliance and quality reviewer. Checks factual citations, customer redaction, product naming, competitor rules, internal information, formatting, and AI traces; outputs a pre-review report and fix suggestions without modifying the original.
 read_when:
   - 预审
   - 审核
@@ -16,25 +15,24 @@ read_when:
   - 发布前审核
   - 发稿前检查
   - pre-publication review
-version: 1.0.2
 disable: false
 ---
 
-# TCMS Compliance Reviewer
+# Content Compliance Reviewer
 
-对完稿后的技术博客、客户案例、产品解读或新闻稿做发布前合规与质量预审。只检查和报告，不自动修改原文。
+Runs a pre-publication compliance and quality review on finished tech blogs, customer cases, product updates, or press releases. Only checks and reports — never auto-modifies the original.
 
 ## When to use
 
-- 需要检查文章中的数据事实、客户脱敏、产品正式名称、竞品规则和内部信息。
-- 需要在发布前确认引用追溯和格式。
-- 需要生成带审批建议的预审报告。
+- Need to check data facts, customer redaction, product official names, competitor rules, and internal information in an article.
+- Need to confirm citation traceability and formatting before publication.
+- Need a pre-review report with an approval recommendation.
 
 ## Do not use
 
-- 月度效果分析和内容复盘，由 `content-performance-analyst` 处理。
-- 自动修改或重写原文；仅提供位置和修改建议。
-- 初次写作或渠道适配。
+- Monthly performance analysis and content retrospectives — handled by `content-performance-analyst`.
+- Auto-modifying or rewriting the original; provide only location and fix suggestions.
+- Initial writing or channel adaptation.
 
 ## Input
 
@@ -50,15 +48,15 @@ compliance_profile: path or object
 review_requested_by:
 ```
 
-合规 profile 由项目私有配置提供。通用引擎使用逻辑字段；真实路径和规则表留私有层。
+The compliance profile is supplied by the project's private configuration. The generic engine uses logical fields; real paths and rule tables stay in the private layer.
 
 ## Workflow
 
 ### Step 1: [Deterministic] Load the draft and reference
 
-1. 读取待审文章。
-2. 读取合规 profile 中的品牌规则、敏感词表、产品公开状态和客户脱敏规则。
-3. 按需查找知识库中对应产品章节，用于验证数据出处。
+1. Read the article under review.
+2. Read the brand rules, sensitive-term list, product-public-status, and customer-redaction rules from the compliance profile.
+3. Look up the corresponding product section in the knowledge base as needed, to verify data provenance.
 
 ### Step 2: [LLM] Item-by-item inspection
 
@@ -113,9 +111,9 @@ Output:
 
 ### Step 4: [Deterministic] Save
 
-保存到：`content/drafts/{original-name}-compliance-review.md`
+Save to: `content/drafts/{original-name}-compliance-review.md`
 
-执行摘要：
+Execution summary:
 
 ```markdown
 ## Execution Summary
@@ -125,18 +123,18 @@ Output:
 - Critical issues:
 ```
 
-## 发布前强化检查（高发返工点兜底）
+## Pre-publish strengthened checks (backstop for high-frequency rework points)
 
-在七项通用检查之外，对高发返工点做强制检查（对应 claim / cross-material 治理线发现的 P0/P1）。这些也是 `content-writer` 表达红线的发布前兜底：
+Beyond the seven general checks, run mandatory checks on high-frequency rework points (corresponding to the P0/P1 items found by the claim / cross-material governance lines). These are also the pre-publish backstop for `content-writer`'s expression red lines:
 
-- **P0 命名一致性**：技术博客产品对外名必须与同 campaign 已发布物料（新闻稿/官网/公众号）逐字一致；不得擅自加版本号/后缀（如对外统一叫 X，博客不得写"X 2.0"）。不一致即 FAIL。
-- **P0 元语言/自我指涉**：出现"本文…""新闻稿把…讲清楚了""值得单独展开""回到…整体叙事"等跳出框架句式即 FAIL，改为内容直接过渡。
-- **P0 商务腔**：出现"多、快、好、省"等四字口号即 FAIL，改工程维度（负载覆盖/执行效率/运维体验/资源效率）。
-- **P1 绝对化表述**：扫描"天然打通/无缝/必然/一定/零"等绝对化词，要求改为带边界的定性表述。
-- **P1 超范围场景**：落地行业/场景若无知识库或已发文章出处，标 `[需确认]` 或删除，不得凭印象列举（如某行业/场景需有内部来源背书）。
-- **P1 忠实转录 vs 量化断言**：基础设施能力有架构图背书可写；量化加速倍数无官方口径标 FAIL。
+- **P0 naming consistency**: the tech-blog product's external name must match verbatim the already-published authoritative materials of the same campaign (press release / official site / official account); must not add its own version number or suffix (e.g. if the external name is uniformly "X", the blog must not write "X 2.0"). Inconsistency = FAIL.
+- **P0 meta-language / self-reference**: sentences that break the frame — "this article…", "the press release makes it clear that…", "deserves its own section", "back to the overall narrative" — = FAIL; replace with a direct content transition.
+- **P0 business jargon**: four-character slogans like "多、快、好、省" = FAIL; rewrite in engineering dimensions (load coverage / execution efficiency / operations experience / resource efficiency).
+- **P1 absolutist phrasing**: scan for "naturally connected / seamless / inevitable / certain / zero" etc.; require a bounded qualifier instead.
+- **P1 out-of-scope scenarios**: landing industries/scenarios without a knowledge-base or published-article source must be marked `[needs confirmation]` or removed; do not list scenarios from memory (e.g. an industry/scenario needs internal-source backing).
+- **P1 faithful transcription vs quantified claims**: infrastructure capabilities backed by an architecture diagram may be stated; quantified speedup multiples without an official figure = FAIL.
 
-> 涉及对外发布且同主题已有多份物料时，预审 PASS 后建议追加 `claim-to-source-auditor` + `cross-material-consistency-auditor` + `tech-content-review-panel` 三件套治理线，再定稿。
+> When publishing externally and multiple materials on the same topic already exist, after a PASS pre-review it is recommended to also run the three-piece governance line — `claim-to-source-auditor` + `cross-material-consistency-auditor` + `tech-content-review-panel` — before finalizing.
 
 ## Hard Rules
 
@@ -171,3 +169,9 @@ content/drafts/{original-name}-compliance-review.md
 - [ ] Every real customer name flagged.
 - [ ] Report saved without modifying the original draft.
 - [ ] Execution summary includes next action.
+
+---
+
+## 中文摘要
+
+Content Compliance Reviewer 是发布前合规与质量预审 Skill：检查事实引用、客户脱敏、产品口径、竞品规则、内部信息、格式与 AI 痕迹，只报告不修改原文。除七项通用检查外，对高发返工点做强制兜底（P0 命名一致性/元语言/商务腔，P1 绝对化/超范围场景/量化断言），与 content-writer 的表达红线前后呼应。多份同主题物料对外发布前，建议再跑 claim-to-source + cross-material + tech-content-review 三件套治理线。
