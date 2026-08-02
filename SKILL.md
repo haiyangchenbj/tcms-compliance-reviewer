@@ -1,6 +1,6 @@
 ---
 name: tcms-compliance-reviewer
-version: "1.1.0"
+version: "1.1.1"
 description: |
   Pre-publication compliance and quality reviewer. Checks factual citations, customer redaction, product naming, competitor rules, internal information, formatting, and AI traces; outputs a pre-review report and fix suggestions without modifying the original.
 read_when:
@@ -15,6 +15,16 @@ read_when:
   - 发布前审核
   - 发稿前检查
   - pre-publication review
+metadata:
+  openclaw:
+    tags:
+      - content-marketing
+      - tech-product
+      - compliance
+      - fact-check
+      - editorial-review
+      - quality-control
+      - b2b
 disable: false
 ---
 
