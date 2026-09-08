@@ -1,8 +1,17 @@
 ---
+slug: tcms-compliance-reviewer
+displayName: Tcms Compliance Reviewer
 name: tcms-compliance-reviewer
-version: "1.1.1"
+version: "1.1.5"
+not_for:
+  - Modifying the draft (review and fix suggestions only)
+  - Legal review or contract compliance (content compliance focus)
+  - Post-publication monitoring or takedown decisions
+  - Fact-checking primary sources (citation-format and naming focus)
 description: |
   Pre-publication compliance and quality reviewer. Checks factual citations, customer redaction, product naming, competitor rules, internal information, formatting, and AI traces; outputs a pre-review report and fix suggestions without modifying the original.
+description_zh: "发布前合规审查器：检查事实引用、客户脱敏、产品命名、竞品规则、内部信息、格式与 AI 痕迹，输出预审报告与修改建议，不改原文。"
+
 read_when:
   - 预审
   - 审核
