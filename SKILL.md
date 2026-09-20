@@ -2,7 +2,7 @@
 slug: tcms-compliance-reviewer
 displayName: Tcms Compliance Reviewer
 name: tcms-compliance-reviewer
-version: "1.1.5"
+version: "1.1.6"
 not_for:
   - Modifying the draft (review and fix suggestions only)
   - Legal review or contract compliance (content compliance focus)
