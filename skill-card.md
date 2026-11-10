@@ -1,43 +1,53 @@
-## Description: <br>
-Pre-publication compliance and quality reviewer. Checks factual citations, customer redaction, product naming, competitor rules, internal information, formatting, and AI traces; outputs a pre-review report and fix suggestions without modifying the original. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews brand-side drafts before publication for citation traceability, customer redaction, product and competitor naming, internal information, formatting, and content quality without editing the draft.
 
-## Publisher: <br>
-[haiyangchenbj](https://clawhub.ai/user/haiyangchenbj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haiyangchenbj](https://clawhub.ai/user/haiyangchenbj)
 
-## Use Case: <br>
-Brand-side technology marketing teams use this skill to review finished blogs, case studies, product updates, and press releases before publication. It checks compliance and quality issues such as factual traceability, customer redaction, product naming, competitor references, internal information, formatting, and AI-like phrasing, then returns a report without modifying the draft. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads drafts and supplied compliance or knowledge-base references, which may include sensitive brand, customer, or pre-publication content. <br>
-Mitigation: Use it only in the intended brand-side pre-publication review workflow and provide the narrowest relevant compliance profile and references. <br>
-Risk: Broad trigger phrases such as review or fact check may route ordinary editing or research requests to this compliance reviewer. <br>
-Mitigation: Narrow trigger phrases or invocation guidance so the skill is used for explicit pre-publication compliance review requests. <br>
-Risk: The skill produces review guidance and approval recommendations that still require human judgment before publication. <br>
-Mitigation: Have an authorized reviewer confirm findings, sources, and approval level before considering the review complete. <br>
+## Use Case:
 
+Content marketing teams use this skill to review tech blogs, customer cases, product updates, and press releases against their draft and compliance profile before human approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haiyangchenbj/skills/tcms-compliance-reviewer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/haiyangchenbj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown pre-review report with summary tables, issue notes, citation verification, overall assessment, recommended approval level, and execution summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill reports findings and suggestions only; it does not modify the original draft.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad activation phrases such as 'review' can invoke this skill for unrelated requests and expose private drafts or compliance profiles to an unnecessary review workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it only for explicit pre-publication reviews with specified draft paths and compliance profiles; narrow activation phrases before deployment.
+
+Risk: The review creates a report in content/drafts that may contain details from private drafts or compliance rules.
+
+Mitigation: Restrict access to the draft, profile, and saved report, and have a person review the findings before publication.
+
+## Reference(s):
+
+- [Content Compliance Reviewer on ClawHub](https://clawhub.ai/haiyangchenbj/skills/tcms-compliance-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown pre-review report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves a separate report under content/drafts with per-check results, citation status, suggested fixes, and an approval recommendation; does not edit the draft.]
+
+## Skill Version(s):
+
+1.1.7 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.
