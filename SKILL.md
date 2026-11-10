@@ -2,7 +2,7 @@
 slug: tcms-compliance-reviewer
 displayName: Tcms Compliance Reviewer
 name: tcms-compliance-reviewer
-version: "1.1.7"""
+version: "1.1.8"
 not_for:
   - Modifying the draft (review and fix suggestions only)
   - Legal review or contract compliance (content compliance focus)
@@ -161,10 +161,10 @@ Beyond the seven general checks, run mandatory checks on high-frequency rework p
 2. Data checks must reference an approved source. Missing sources receive a fail.
 3. Any real customer name hit is an automatic fail.
 4. Employer or unrelated brand names must not appear in outward-facing content unless the piece is officially co-branded; a hit is a fail even when the sentence is otherwise correct.
-4. Unconfirmed product capabilities receive a needs-fix.
-5. Competitor named references must be flagged.
-6. Internal code names or project names are an automatic fail.
-7. Human confirmation required before marking the review complete and handing off to adaptation.
+5. Unconfirmed product capabilities receive a needs-fix.
+6. Competitor named references must be flagged.
+7. Internal code names or project names are an automatic fail.
+8. Human confirmation required before marking the review complete and handing off to adaptation.
 
 ## Failure Handling
 
