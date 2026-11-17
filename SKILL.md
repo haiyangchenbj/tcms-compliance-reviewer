@@ -2,7 +2,7 @@
 slug: tcms-compliance-reviewer
 displayName: Tcms Compliance Reviewer
 name: tcms-compliance-reviewer
-version: "1.1.8"
+version: "1.1.9"
 not_for:
   - Modifying the draft (review and fix suggestions only)
   - Legal review or contract compliance (content compliance focus)
@@ -173,7 +173,7 @@ Beyond the seven general checks, run mandatory checks on high-frequency rework p
 | Draft not found | List available drafts for the user |
 | Compliance profile missing | Warn and skip brand/sensitive-term checks; flag as incomplete |
 | Knowledge-base section unavailable | Mark all data items as unverifiable |
-| Draft has no citation table | Mark as recommended |
+| Draft has no citation table | Mark data traceability as FAIL (no source table means no figure can be checked against an approved source, per Hard Rule 2) and list it as a blocking issue |
 | Competitor, customer or product policy changed | Request updated profile before proceeding |
 
 ## Output Format
